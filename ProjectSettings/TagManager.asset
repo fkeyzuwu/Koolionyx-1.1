@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - SolidObjects
+  - Eucalyptus
+  - Enemies
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1512236863
+    locked: 0
+  - name: Foreground
+    uniqueID: 1282968457
+    locked: 0
+  - name: Player
+    uniqueID: 424375683
+    locked: 0
+  - name: AlmostSolid
+    uniqueID: 208906591
+    locked: 0
+  - name: Eucalyptus
+    uniqueID: 2846700055
+    locked: 0
+  - name: SolidObjects
+    uniqueID: 3432685867
+    locked: 0
