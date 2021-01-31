@@ -2545,7 +2545,7 @@ MonoBehaviour:
     clip: {fileID: 0}
     source: {fileID: 0}
     volume: 1
-    pitch: 1
+    pitch: 0.4
     loop: 0
   - name: Foley
     clip: {fileID: 0}
