@@ -2538,7 +2538,7 @@ MonoBehaviour:
   - name: Button
     clip: {fileID: 0}
     source: {fileID: 0}
-    volume: 1
+    volume: 0.389
     pitch: 1
     loop: 0
   - name: Music
@@ -2546,13 +2546,13 @@ MonoBehaviour:
     source: {fileID: 0}
     volume: 1
     pitch: 0.4
-    loop: 0
+    loop: 1
   - name: Foley
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: b073f516a7f6ff240bfee3193bca8cf9, type: 3}
     source: {fileID: 0}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
 --- !u!1 &1489815991 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 119120336211589800, guid: 187025f8e13bc9c4991c7150fbf84d44,
