@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         Eucalyptus.count = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LevelLoader.instance.RestartLevel();
         UpdateScore();
     }
 

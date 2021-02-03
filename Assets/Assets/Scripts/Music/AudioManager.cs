@@ -74,6 +74,6 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
 
-        audioSource.volume = 1f;
+        audioSource.volume = maxVolume;
     }
 }
