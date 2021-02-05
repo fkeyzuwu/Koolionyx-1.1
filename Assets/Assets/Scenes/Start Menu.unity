@@ -344,6 +344,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6516073756189127754, guid: 075e6abe6b14532468f569d3ffd3b4ea,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516073756189127754, guid: 075e6abe6b14532468f569d3ffd3b4ea,
+        type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 075e6abe6b14532468f569d3ffd3b4ea, type: 3}
 --- !u!114 &783682722 stripped
@@ -932,7 +942,7 @@ PrefabInstance:
     - target: {fileID: 2186952968006799755, guid: e9fc0b14cf1121341b26c643779b7218,
         type: 3}
       propertyPath: sounds.Array.data[0].volume
-      value: 0.288
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2186952968006799755, guid: e9fc0b14cf1121341b26c643779b7218,
         type: 3}

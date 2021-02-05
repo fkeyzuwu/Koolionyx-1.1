@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Runtime.CompilerServices;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -16,42 +17,46 @@ public class LevelLoader : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            return;
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     public void Start()
     {
         Sound foley = AudioManager.instance.GetSound("Foley");
         StartCoroutine(AudioManager.instance.FadeIn(foley.source, 1f, foley.volume));
+        transition.SetTrigger("Start");
     }
 
     public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1, "LoadNextLevel"));
     }
 
     public void RestartLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex, "RestartLevel"));
     }
 
-    IEnumerator LoadLevel(int levelIndex)
-    //TODO: Change it so you have different transition effects based on which scenes you activated it from.
-    //Reloading the same scene shouldnt do the full animation.
-    //Make animation entry state do nothing. after, make start trigger and end trigger. each one doing the other part of the animation.
-    //also different fadeout audio when you die and respawn uknow
+    IEnumerator LoadLevel(int levelIndex, string methodName)
     {
-        transition.SetTrigger("Start");
+        if(methodName == "LoadNextLevel") //When you load a new scene
+        {
+            transition.SetTrigger("End");
+            Sound foley = AudioManager.instance.GetSound("Foley");
+            StartCoroutine(AudioManager.instance.FadeOut(foley.source, 1f));
 
-        Sound foley = AudioManager.instance.GetSound("Foley");
-        StartCoroutine(AudioManager.instance.FadeOut(foley.source, 1f));
+            yield return new WaitForSeconds(1f);
 
-        yield return new WaitForSeconds(1f);
-
-        SceneManager.LoadScene(levelIndex);
-        StartCoroutine(AudioManager.instance.FadeIn(foley.source, 1f, foley.volume));
+            transition.SetTrigger("Start");
+            SceneManager.LoadScene(levelIndex);
+        }
+        if(methodName == "RestartLevel")//When you reload the current scene
+        {
+            transition.SetTrigger("End");
+            SceneManager.LoadScene(levelIndex);
+            Sound foley = AudioManager.instance.GetSound("Foley");
+            StartCoroutine(AudioManager.instance.FadeIn(foley.source, 1f, foley.volume));
+        }
     }
 }
