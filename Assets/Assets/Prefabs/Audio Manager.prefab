@@ -47,7 +47,7 @@ MonoBehaviour:
   - name: Button
     clip: {fileID: 8300000, guid: 9ea7dfd453fc1b749b7c330d231674c7, type: 3}
     source: {fileID: 0}
-    volume: 1
+    volume: 0.2
     pitch: 1
     loop: 0
   - name: Music
@@ -57,8 +57,8 @@ MonoBehaviour:
     pitch: 1
     loop: 0
   - name: Foley
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: b073f516a7f6ff240bfee3193bca8cf9, type: 3}
     source: {fileID: 0}
-    volume: 1
+    volume: 0.3
     pitch: 1
     loop: 0
