@@ -1,10 +1,12 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
+    private AudioManager audioManager;
     public static LevelLoader instance;
 
     private void Awake()
@@ -21,8 +23,8 @@ public class LevelLoader : MonoBehaviour
 
     public void Start()
     {
-        Sound foley = AudioManager.instance.GetSound("Foley");
-        StartCoroutine(AudioManager.instance.FadeIn(foley.source, 1f, foley.volume));
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
+        StartCoroutine(audioManager.FadeIn("Foley", 1f));
         transition.SetTrigger("Start");
     }
 
@@ -41,20 +43,22 @@ public class LevelLoader : MonoBehaviour
         if(methodName == "LoadNextLevel") //When you load a new scene
         {
             transition.SetTrigger("End");
-            Sound foley = AudioManager.instance.GetSound("Foley");
-            StartCoroutine(AudioManager.instance.FadeOut(foley.source, 1f));
+            StartCoroutine(audioManager.FadeOut("Foley", 1f));
 
             yield return new WaitForSeconds(1f);
 
             transition.SetTrigger("Start");
+            StartCoroutine(audioManager.FadeIn("Main Theme", 1f));
+            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene(levelIndex);
         }
-        if(methodName == "RestartLevel")//When you reload the current scene
+
+        if(methodName == "RestartLevel") //When you reload the current scene
         {
+            audioManager.Stop("Main Theme");
             transition.SetTrigger("End");
             SceneManager.LoadScene(levelIndex);
-            Sound foley = AudioManager.instance.GetSound("Foley");
-            StartCoroutine(AudioManager.instance.FadeIn(foley.source, 1f, foley.volume));
+            StartCoroutine(audioManager.FadeIn("Main Theme", 1f));
         }
     }
 }
