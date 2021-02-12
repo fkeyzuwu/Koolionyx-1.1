@@ -69,11 +69,4 @@ public class LevelLoader : MonoBehaviour
             crossfade.SetTrigger("FadeIn");
         }
     }
-
-    private void ResetAnimationTriggers()
-    {
-        crossfade.ResetTrigger("Start");
-        crossfade.ResetTrigger("End");
-        crossfade.SetTrigger("Reset");
-    }
 }
