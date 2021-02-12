@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,12 +7,15 @@ public class PlayerController : MonoBehaviour
     private LayerMask eucalyptusLayer;
     private LayerMask defaultLayer;
     private LayerMask enemiesLayer;
-    public float moveSpeed;
     private bool isMoving;
     private Vector2 input;
     private bool isHorizontal;
     private int direction;
     private Animator animator;
+
+    [HideInInspector]
+    public float moveSpeed;
+    public float energy = 100f;
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //qPhysics2D.Ignore
     }
 
     // Update is called once per frame
@@ -102,10 +103,16 @@ public class PlayerController : MonoBehaviour
 
     private bool IsWalkabale(Vector3 targetPos)
     {
-        if (Physics2D.OverlapCircle(targetPos, 0.2f) != null)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(targetPos, 0.2f);
+
+        foreach(Collider2D collider in colliders)
         {
-            return false;
+            if(!collider.isTrigger)
+            {
+                return false;
+            }
         }
+
         return true;
     }
 
@@ -120,8 +127,9 @@ public class PlayerController : MonoBehaviour
 
         Collider2D eucalyptusCollider = Physics2D.OverlapCircle(eatPosition, 0.2f, eucalyptusLayer);
 
-        if (eucalyptusCollider != null)
+        if (eucalyptusCollider != null && !eucalyptusCollider.GetComponent<Eucalyptus>().isEaten)
         {
+            energy += 20f;
             eucalyptusCollider.GetComponent<Animator>().SetTrigger("isEaten");
             eucalyptusCollider.GetComponent<Eucalyptus>().OnEucalyptusEaten();
         }
@@ -141,17 +149,23 @@ public class PlayerController : MonoBehaviour
         if (attackCollider != null)
         {
             SnakeController snakeController = attackCollider.gameObject.GetComponent<SnakeController>();
-            if (!snakeController.isDead)
+            if (!snakeController.isDead && energy > 0f)
             {
-                snakeController.isDead = true;
-                attackCollider.gameObject.GetComponent<Animator>().SetTrigger("isDead");
+                snakeController.health -= energy;
+                energy -= 10f;
+
+                if (snakeController.health <= 0f)
+                {
+                    snakeController.isDead = true;
+                    attackCollider.gameObject.GetComponent<Animator>().SetTrigger("isDead");
+                }
             }
         }
         
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+     {
         if (collision.gameObject.name == "Home")
         {
             GameManager.instance.ReturnedHome();
