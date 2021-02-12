@@ -1,79 +1,105 @@
-﻿using UnityEngine;
-using UnityEngine.Audio;
-using System;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
-    public static AudioManager instance;
+    public Sound[] audioClipsArray;
+    private Dictionary<string, Sound> sounds = new Dictionary<string, Sound>();
 
-    
-    void Awake()
+    // Start is called before the first frame update
+    private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         DontDestroyOnLoad(gameObject);
 
-        foreach (Sound s in sounds)
+        foreach (Sound sound in audioClipsArray)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
+            sounds.Add(sound.name, sound);
         }
+        audioClipsArray = null;
     }
 
     public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.Play();
-    }
+        Sound sound = sounds[name];
+        AudioSource audioToPlay = FindAudioSource(name);
 
-    public Sound GetSound(string name)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        return s;
-    }
-
-    public IEnumerator FadeOut(AudioSource audioSource, float fadeTime)
-    {
-        float startVolume = audioSource.volume;
-
-        while (audioSource.volume > 0)
+        if (audioToPlay == null)
         {
-            audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
+            AudioSource newSource = gameObject.AddComponent<AudioSource>();
+            newSource.clip = sound.clip;
+            newSource.volume = sound.volume;
+            newSource.pitch = sound.pitch;
+            newSource.loop = sound.loop;
+            newSource.Play();
+        }
+        else
+        {
+            audioToPlay.Play();
+        }
+    }
 
-            yield return null;
+    public void Stop(string name)
+    {
+        AudioSource audioToStop = FindAudioSource(name);
+        if(audioToStop != null)
+        {
+            audioToStop.Stop();
+        }
+    }
+
+    private AudioSource FindAudioSource(string name)
+    {
+        return Array.Find(gameObject.GetComponents<AudioSource>(), source => source.clip.name == name);
+    }
+
+    public IEnumerator FadeIn(string name, float fadeTime)
+    {
+        Sound sound = sounds[name];
+        AudioSource audioToFadeIn = FindAudioSource(name);
+
+        if(FindAudioSource(name) == null)
+        {
+            audioToFadeIn = gameObject.AddComponent<AudioSource>();
         }
 
-        audioSource.Stop();
-        audioSource.volume = startVolume;
-    }
-
-    public IEnumerator FadeIn(AudioSource audioSource, float fadeTime, float maxVolume)
-    {
         float startVolume = 0.2f;
 
-        audioSource.volume = 0;
-        audioSource.Play();
+        audioToFadeIn.volume = 0f;
+        audioToFadeIn.clip = sound.clip;
+        audioToFadeIn.pitch = sound.pitch;
+        audioToFadeIn.loop = sound.loop;
+        audioToFadeIn.Play();
 
-        while (audioSource.volume < maxVolume)
+        while (audioToFadeIn.volume < sound.volume)
         {
-            audioSource.volume += startVolume * Time.deltaTime / fadeTime;
+            audioToFadeIn.volume += startVolume * Time.deltaTime / fadeTime;
+
+            yield return null;
+        }
+    }
+
+    public IEnumerator FadeOut(string name, float fadeTime)
+    {
+        Sound sound = sounds[name];
+        AudioSource audioToFadeOut = FindAudioSource(name);
+
+        if (FindAudioSource(name) == null)
+        {
+            audioToFadeOut = gameObject.AddComponent<AudioSource>();
+        }
+
+        float startVolume = sound.volume;
+
+        while (audioToFadeOut.volume > 0)
+        {
+            audioToFadeOut.volume -= startVolume * Time.deltaTime / fadeTime;
 
             yield return null;
         }
 
-        audioSource.volume = maxVolume;
+        audioToFadeOut.Stop();
+        audioToFadeOut.volume = startVolume;
     }
 }

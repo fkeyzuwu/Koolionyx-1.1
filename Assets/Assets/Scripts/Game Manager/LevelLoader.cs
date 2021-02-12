@@ -1,10 +1,12 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    public Animator transition;
+    public Animator crossfade;
+    private AudioManager audioManager;
     public static LevelLoader instance;
 
     private void Awake()
@@ -17,13 +19,15 @@ public class LevelLoader : MonoBehaviour
         {
             return;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Start()
     {
-        Sound foley = AudioManager.instance.GetSound("Foley");
-        StartCoroutine(AudioManager.instance.FadeIn(foley.source, 1f, foley.volume));
-        transition.SetTrigger("Start");
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
+        StartCoroutine(audioManager.FadeIn("Foley", 1f));
+        crossfade.SetTrigger("FadeIn");
     }
 
     public void LoadNextLevel()
@@ -40,21 +44,36 @@ public class LevelLoader : MonoBehaviour
     {
         if(methodName == "LoadNextLevel") //When you load a new scene
         {
-            transition.SetTrigger("End");
-            Sound foley = AudioManager.instance.GetSound("Foley");
-            StartCoroutine(AudioManager.instance.FadeOut(foley.source, 1f));
+            StartCoroutine(audioManager.FadeOut("Foley", 1f));
+            crossfade.SetTrigger("FadeOut");
 
             yield return new WaitForSeconds(1f);
 
-            transition.SetTrigger("Start");
+            StartCoroutine(audioManager.FadeIn("Main Theme", 1f));
+            StartCoroutine(audioManager.FadeIn("Foley", 1f));
+            crossfade.SetTrigger("FadeIn");
             SceneManager.LoadScene(levelIndex);
+
+            //ResetAnimationTriggers();
         }
-        if(methodName == "RestartLevel")//When you reload the current scene
+
+        if(methodName == "RestartLevel") //When you reload the current scene
         {
-            transition.SetTrigger("End");
+            //ResetAnimationTriggers();
+
+            audioManager.Stop("Main Theme");
+
             SceneManager.LoadScene(levelIndex);
-            Sound foley = AudioManager.instance.GetSound("Foley");
-            StartCoroutine(AudioManager.instance.FadeIn(foley.source, 1f, foley.volume));
+            StartCoroutine(audioManager.FadeIn("Main Theme", 1f));
+            StartCoroutine(audioManager.FadeIn("Foley", 1f));
+            crossfade.SetTrigger("FadeIn");
         }
+    }
+
+    private void ResetAnimationTriggers()
+    {
+        crossfade.ResetTrigger("Start");
+        crossfade.ResetTrigger("End");
+        crossfade.SetTrigger("Reset");
     }
 }
