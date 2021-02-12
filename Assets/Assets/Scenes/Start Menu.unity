@@ -346,6 +346,16 @@ PrefabInstance:
       propertyPath: audioClipsArray.Array.data[2]
       value: 
       objectReference: {fileID: 8300000, guid: 6c8691f9ee554c744aaa3a1b98b5c057, type: 3}
+    - target: {fileID: 6516073755377011450, guid: 075e6abe6b14532468f569d3ffd3b4ea,
+        type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 666315999}
+    - target: {fileID: 6516073755377011450, guid: 075e6abe6b14532468f569d3ffd3b4ea,
+        type: 3}
+      propertyPath: crossfade
+      value: 
+      objectReference: {fileID: 666315999}
     - target: {fileID: 6516073755377011451, guid: 075e6abe6b14532468f569d3ffd3b4ea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -411,8 +421,24 @@ PrefabInstance:
       propertyPath: m_BlocksRaycasts
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6516073756189127754, guid: 075e6abe6b14532468f569d3ffd3b4ea,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516073757008980834, guid: 075e6abe6b14532468f569d3ffd3b4ea,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 48bfd14e5cc15654f82781e4cd0281c1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 075e6abe6b14532468f569d3ffd3b4ea, type: 3}
+--- !u!95 &666315999 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6516073757008980834, guid: 075e6abe6b14532468f569d3ffd3b4ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 666315998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &867031844
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,56 +1009,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[2].name
-      value: Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9ea7dfd453fc1b749b7c330d231674c7, type: 3}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[2].volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[2].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[2].loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[1].volume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: b073f516a7f6ff240bfee3193bca8cf9, type: 3}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 6c8691f9ee554c744aaa3a1b98b5c057, type: 3}
     - target: {fileID: 6292876390421943751, guid: e9fc0b14cf1121341b26c643779b7218,
         type: 3}
       propertyPath: m_Name
       value: Audio Manager
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6292876390421943746, guid: e9fc0b14cf1121341b26c643779b7218, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9fc0b14cf1121341b26c643779b7218, type: 3}

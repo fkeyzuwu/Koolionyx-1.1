@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    public Animator transition;
+    public Animator crossfade;
     private AudioManager audioManager;
     public static LevelLoader instance;
 
@@ -19,13 +19,15 @@ public class LevelLoader : MonoBehaviour
         {
             return;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Start()
     {
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
         StartCoroutine(audioManager.FadeIn("Foley", 1f));
-        transition.SetTrigger("Start");
+        crossfade.SetTrigger("FadeIn");
     }
 
     public void LoadNextLevel()
@@ -42,23 +44,36 @@ public class LevelLoader : MonoBehaviour
     {
         if(methodName == "LoadNextLevel") //When you load a new scene
         {
-            transition.SetTrigger("End");
             StartCoroutine(audioManager.FadeOut("Foley", 1f));
+            crossfade.SetTrigger("FadeOut");
 
             yield return new WaitForSeconds(1f);
 
-            transition.SetTrigger("Start");
             StartCoroutine(audioManager.FadeIn("Main Theme", 1f));
-            yield return new WaitForSeconds(1f);
+            StartCoroutine(audioManager.FadeIn("Foley", 1f));
+            crossfade.SetTrigger("FadeIn");
             SceneManager.LoadScene(levelIndex);
+
+            //ResetAnimationTriggers();
         }
 
         if(methodName == "RestartLevel") //When you reload the current scene
         {
+            //ResetAnimationTriggers();
+
             audioManager.Stop("Main Theme");
-            transition.SetTrigger("End");
+
             SceneManager.LoadScene(levelIndex);
             StartCoroutine(audioManager.FadeIn("Main Theme", 1f));
+            StartCoroutine(audioManager.FadeIn("Foley", 1f));
+            crossfade.SetTrigger("FadeIn");
         }
+    }
+
+    private void ResetAnimationTriggers()
+    {
+        crossfade.ResetTrigger("Start");
+        crossfade.ResetTrigger("End");
+        crossfade.SetTrigger("Reset");
     }
 }
