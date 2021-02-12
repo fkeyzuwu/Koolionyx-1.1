@@ -1,23 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SnakeController : MonoBehaviour
 {
-    private Animator snakeAnim;
-    private PlayerController playerControllerScript;
+    #region Private Properties
+
+    private Animator snakeAnimator;
     private GameObject kooli;
     private LayerMask defaultLayer;
     private bool isAlert = false;
-    private bool isAttack = false;
+    private bool isAttacking = false;
+
+    #endregion
+
+    #region Public Properties
+
+    [HideInInspector]
     public bool isDead = false;
+    [HideInInspector]
+    public float health = 70f;
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        playerControllerScript = GameObject.Find("Kooli").GetComponent<PlayerController>();
         kooli = GameObject.Find("Kooli");
-        snakeAnim = GetComponent<Animator>();
+        snakeAnimator = GetComponent<Animator>();
         defaultLayer = LayerMask.GetMask("Default");
     }
 
@@ -41,33 +49,31 @@ public class SnakeController : MonoBehaviour
 
             if (snakeAttackCollider != null)
             {
-                if (!isAttack)
+                if (!isAttacking)
                 {
-                    snakeAnim.SetBool("inAttackRange", true);
-                    isAttack = true;
+                    snakeAnimator.SetBool("inAttackRange", true);
+                    isAttacking = true;
                 }
             }
             else
             {
                 if (!isAlert)
                 {
-                    snakeAnim.SetBool("inAlertRange", true);
+                    snakeAnimator.SetBool("inAlertRange", true);
                     isAlert = true;
                 }
 
-                if (isAttack)
+                if (isAttacking)
                 {
-                    snakeAnim.SetBool("inAttackRange", false);
-                    isAttack = false;
+                    snakeAnimator.SetBool("inAttackRange", false);
+                    isAttacking = false;
                 }
             }
         }
         else if(isAlert)
         {
-            snakeAnim.SetBool("inAlertRange", false);
+            snakeAnimator.SetBool("inAlertRange", false);
             isAlert = false;
         }
     }
-
-    
 }

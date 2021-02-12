@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,12 +7,15 @@ public class PlayerController : MonoBehaviour
     private LayerMask eucalyptusLayer;
     private LayerMask defaultLayer;
     private LayerMask enemiesLayer;
-    public float moveSpeed;
     private bool isMoving;
     private Vector2 input;
     private bool isHorizontal;
     private int direction;
     private Animator animator;
+
+    [HideInInspector]
+    public float moveSpeed;
+    public float energy = 100f;
 
     private void Awake()
     {
@@ -120,8 +121,9 @@ public class PlayerController : MonoBehaviour
 
         Collider2D eucalyptusCollider = Physics2D.OverlapCircle(eatPosition, 0.2f, eucalyptusLayer);
 
-        if (eucalyptusCollider != null)
+        if (eucalyptusCollider != null && !eucalyptusCollider.GetComponent<Eucalyptus>().isEaten)
         {
+            energy += 20f;
             eucalyptusCollider.GetComponent<Animator>().SetTrigger("isEaten");
             eucalyptusCollider.GetComponent<Eucalyptus>().OnEucalyptusEaten();
         }
@@ -141,10 +143,16 @@ public class PlayerController : MonoBehaviour
         if (attackCollider != null)
         {
             SnakeController snakeController = attackCollider.gameObject.GetComponent<SnakeController>();
-            if (!snakeController.isDead)
+            if (!snakeController.isDead && energy > 0f)
             {
-                snakeController.isDead = true;
-                attackCollider.gameObject.GetComponent<Animator>().SetTrigger("isDead");
+                snakeController.health -= energy;
+                energy -= 10f;
+
+                if (snakeController.health <= 0f)
+                {
+                    snakeController.isDead = true;
+                    attackCollider.gameObject.GetComponent<Animator>().SetTrigger("isDead");
+                }
             }
         }
         

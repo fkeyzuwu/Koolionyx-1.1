@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
+  health: 70
 --- !u!95 &8876316402834929028
 Animator:
   serializedVersion: 3
