@@ -112,6 +112,38 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &43700841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 43700842}
+  m_Layer: 0
+  m_Name: Tree
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &43700842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43700841}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 200, y: -25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1865013851}
+  - {fileID: 1204576602}
+  m_Father: {fileID: 658804103}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &128971257
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +283,162 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &491540508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 491540509}
+  - component: {fileID: 491540511}
+  - component: {fileID: 491540510}
+  m_Layer: 0
+  m_Name: Game Objective Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &491540509
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491540508}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5.4453034}
+  m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
+  m_Children: []
+  m_Father: {fileID: 589532515}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3.9487305, y: -124.72327}
+  m_SizeDelta: {x: 200, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &491540510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491540508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Eat all the Eucalyptus and come back home safely!
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: c5f795220628b7947a2bc6adb7a62eef, type: 2}
+  m_sharedMaterial: {fileID: 21949433527413590, guid: c5f795220628b7947a2bc6adb7a62eef,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 30
+  m_fontSizeBase: 30
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 258
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: 0
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -108.55892, y: 0, z: -91.36926, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 491540510}
+    characterCount: 49
+    spriteCount: 0
+    spaceCount: 8
+    wordCount: 9
+    linkCount: 0
+    lineCount: 2
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &491540511
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491540508}
+  m_CullTransparentMesh: 0
 --- !u!114 &494543269 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
@@ -263,6 +451,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b848c9b2a85749247a7cc454157f893a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &519831077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 519831078}
+  m_Layer: 0
+  m_Name: Python
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &519831078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519831077}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -200, y: -25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1118389583}
+  - {fileID: 1719947898}
+  m_Father: {fileID: 658804103}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &589532514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 589532515}
+  m_Layer: 0
+  m_Name: Game Objective
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &589532515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589532514}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 35, y: -30, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 491540509}
+  m_Father: {fileID: 658804103}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &631817286 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6516073755377011450, guid: 075e6abe6b14532468f569d3ffd3b4ea,
@@ -305,11 +556,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 589532515}
   - {fileID: 867031845}
-  - {fileID: 1118389583}
-  - {fileID: 1719947898}
-  - {fileID: 1865013851}
-  - {fileID: 1204576602}
+  - {fileID: 43700842}
+  - {fileID: 519831078}
   m_Father: {fileID: 128971258}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -553,11 +803,11 @@ RectTransform:
   m_Children:
   - {fileID: 1737400753}
   m_Father: {fileID: 658804103}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -185}
+  m_AnchoredPosition: {x: 0, y: -400}
   m_SizeDelta: {x: 227.80008, y: 88.87898}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &867031846
@@ -854,7 +1104,7 @@ GameObject:
   - component: {fileID: 1118389586}
   - component: {fileID: 1118389585}
   m_Layer: 5
-  m_Name: Python
+  m_Name: Python Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -867,16 +1117,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1118389582}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5.4453034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 658804103}
-  m_RootOrder: 1
+  m_Father: {fileID: 519831078}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -260, y: 267}
+  m_AnchoredPosition: {x: -297.94873, y: 425.27673}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1118389584
@@ -960,15 +1210,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204576601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5.4453034}
   m_LocalScale: {x: 1.28, y: 1.28, z: 1.28}
   m_Children: []
-  m_Father: {fileID: 658804103}
-  m_RootOrder: 4
+  m_Father: {fileID: 43700842}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 254, y: 162.00002}
+  m_AnchoredPosition: {x: 182.05127, y: 287.27673}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1204576603
@@ -989,7 +1239,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press E to eat the Eucalyptus!
+  m_text: 'Press E to eat the Eucalyptus!
+
+
+    Eating Eucalyptus restores your energy!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c5f795220628b7947a2bc6adb7a62eef, type: 2}
   m_sharedMaterial: {fileID: 21949433527413590, guid: c5f795220628b7947a2bc6adb7a62eef,
@@ -1035,7 +1288,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 31
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1056,15 +1309,15 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -86.38221, w: -40.030895}
+  m_margin: {x: 0, y: 0, z: -200.9728, w: -40.030895}
   m_textInfo:
     textComponent: {fileID: 1204576603}
-    characterCount: 30
+    characterCount: 71
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 6
+    spaceCount: 11
+    wordCount: 11
     linkCount: 0
-    lineCount: 2
+    lineCount: 5
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -1167,15 +1420,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719947897}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5.4453034}
   m_LocalScale: {x: 1.28, y: 1.28, z: 1.28}
   m_Children: []
-  m_Father: {fileID: 658804103}
-  m_RootOrder: 2
+  m_Father: {fileID: 519831078}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -310, y: 162}
+  m_AnchoredPosition: {x: -387.94873, y: 287.27673}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1719947899
@@ -1196,7 +1449,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press Space to attack the Python!
+  m_text: 'Press Space to attack the Python!
+
+
+    Attacking Pythons drains your energy!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c5f795220628b7947a2bc6adb7a62eef, type: 2}
   m_sharedMaterial: {fileID: 21949433527413590, guid: c5f795220628b7947a2bc6adb7a62eef,
@@ -1263,15 +1519,15 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -124.30629, w: -37.923985}
+  m_margin: {x: 0, y: 0, z: -131.40524, w: -37.923985}
   m_textInfo:
     textComponent: {fileID: 1719947899}
-    characterCount: 33
+    characterCount: 72
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 6
+    spaceCount: 11
+    wordCount: 11
     linkCount: 0
-    lineCount: 2
+    lineCount: 5
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -1499,15 +1755,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865013850}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5.4453034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 658804103}
-  m_RootOrder: 3
+  m_Father: {fileID: 43700842}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 310, y: 267}
+  m_AnchoredPosition: {x: 292.05127, y: 425.27673}
   m_SizeDelta: {x: 100, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1865013852
