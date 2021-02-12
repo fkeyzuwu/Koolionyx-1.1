@@ -53,14 +53,10 @@ public class LevelLoader : MonoBehaviour
             StartCoroutine(audioManager.FadeIn("Foley", 1f));
             crossfade.SetTrigger("FadeIn");
             SceneManager.LoadScene(levelIndex);
-
-            //ResetAnimationTriggers();
         }
 
         if(methodName == "RestartLevel") //When you reload the current scene
         {
-            //ResetAnimationTriggers();
-
             audioManager.Stop("Main Theme");
 
             SceneManager.LoadScene(levelIndex);
