@@ -32,48 +32,50 @@ public class SnakeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider2D snakeAlertCollider = Physics2D.OverlapCircle(transform.position, 2f, defaultLayer);
-        
-        if (snakeAlertCollider != null)
+        if (isAlert)
         {
             if (kooli.transform.position.x > transform.position.x)
             {
-                transform.eulerAngles = new Vector3(0f,180f);
+                transform.eulerAngles = new Vector3(0f, 180f);
             }
             else
             {
                 transform.eulerAngles = new Vector3(0f, 0f);
             }
+        }
+    }
 
-            Collider2D snakeAttackCollider = Physics2D.OverlapCircle(transform.position, 1.0f, defaultLayer);
-
-            if (snakeAttackCollider != null)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Kooli")
+        {
+            if (!isAlert)
             {
-                if (!isAttacking)
-                {
-                    snakeAnimator.SetBool("inAttackRange", true);
-                    isAttacking = true;
-                }
+                snakeAnimator.SetBool("inAlertRange", true);
+                isAlert = true;
             }
-            else
+            else if (!isAttacking)
             {
-                if (!isAlert)
-                {
-                    snakeAnimator.SetBool("inAlertRange", true);
-                    isAlert = true;
-                }
-
-                if (isAttacking)
-                {
-                    snakeAnimator.SetBool("inAttackRange", false);
-                    isAttacking = false;
-                }
+                snakeAnimator.SetBool("inAttackRange", true);
+                isAttacking = true;
             }
         }
-        else if(isAlert)
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.name == "Kooli")
         {
-            snakeAnimator.SetBool("inAlertRange", false);
-            isAlert = false;
+            if (isAttacking)
+            {
+                snakeAnimator.SetBool("inAttackRange", false);
+                isAttacking = false;
+            }
+            else if (isAlert)
+            {
+                snakeAnimator.SetBool("inAlertRange", false);
+                isAlert = false;
+            }
         }
     }
 }

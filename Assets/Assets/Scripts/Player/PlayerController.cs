@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //qPhysics2D.Ignore
     }
 
     // Update is called once per frame
@@ -103,10 +103,16 @@ public class PlayerController : MonoBehaviour
 
     private bool IsWalkabale(Vector3 targetPos)
     {
-        if (Physics2D.OverlapCircle(targetPos, 0.2f) != null)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(targetPos, 0.2f);
+
+        foreach(Collider2D collider in colliders)
         {
-            return false;
+            if(!collider.isTrigger)
+            {
+                return false;
+            }
         }
+
         return true;
     }
 
@@ -159,7 +165,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+     {
         if (collision.gameObject.name == "Home")
         {
             GameManager.instance.ReturnedHome();
