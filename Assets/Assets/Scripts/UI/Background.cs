@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Background : MonoBehaviour
 {
-    public Image image;
+    private Image image;
     Color32 minColor = new Color32(67, 212, 130, 255);
     Color32 maxColor = new Color32(67, 212, 212, 255);
 
