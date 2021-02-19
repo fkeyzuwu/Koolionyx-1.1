@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public float moveSpeed;
-    public float energy = 100f;
+    public float energy = 100f; //TODO: UI
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //qPhysics2D.Ignore
+
     }
 
     // Update is called once per frame
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                AttackPython();
+                AttackPython(); //TODO: if python isnt dead, do a different animation - hit animation.
             }
         }
 
