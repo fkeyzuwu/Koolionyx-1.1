@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
@@ -22,12 +23,13 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name)
     {
-        Sound sound = sounds[name];
         AudioSource audioToPlay = FindAudioSource(name);
 
         if (audioToPlay == null)
         {
             AudioSource newSource = gameObject.AddComponent<AudioSource>();
+            Sound sound = sounds[name];
+
             newSource.clip = sound.clip;
             newSource.volume = sound.volume;
             newSource.pitch = sound.pitch;
@@ -40,9 +42,33 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayOneShot(string name)
+    {
+        AudioSource audioToPlay = FindAudioSource(name);
+
+        if (audioToPlay == null)
+        {
+            AudioSource newSource = gameObject.AddComponent<AudioSource>();
+            Sound sound = sounds[name];
+
+            newSource.clip = sound.clip;
+            newSource.volume = sound.volume;
+            newSource.loop = sound.loop;
+
+            newSource.pitch = Random.Range(0.8f, 1.2f);
+            newSource.PlayOneShot(newSource.clip);
+        }
+        else
+        {
+            audioToPlay.pitch = Random.Range(0.8f, 1.2f);
+            audioToPlay.PlayOneShot(audioToPlay.clip);
+        }
+    }
+
     public void Stop(string name)
     {
         AudioSource audioToStop = FindAudioSource(name);
+        //audioToStop?.Stop();
         if(audioToStop != null)
         {
             audioToStop.Stop();

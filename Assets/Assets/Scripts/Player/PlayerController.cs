@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private bool isHorizontal;
     private int direction;
     private Animator animator;
+    private AudioManager audioManager;
+
 
     [HideInInspector]
     public float moveSpeed;
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -130,6 +132,7 @@ public class PlayerController : MonoBehaviour
         if (eucalyptusCollider != null && !eucalyptusCollider.GetComponent<Eucalyptus>().isEaten)
         {
             energy += 20f;
+            audioManager.PlayOneShot("Eat");
             eucalyptusCollider.GetComponent<Animator>().SetTrigger("isEaten");
             eucalyptusCollider.GetComponent<Eucalyptus>().OnEucalyptusEaten();
         }
