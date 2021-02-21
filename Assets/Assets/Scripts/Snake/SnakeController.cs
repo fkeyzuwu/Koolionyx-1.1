@@ -6,6 +6,7 @@ public class SnakeController : MonoBehaviour
 
     private Animator snakeAnimator;
     private GameObject kooli;
+    private AudioManager audioManager;
     private LayerMask defaultLayer;
     private bool isAlert = false;
     private bool isAttacking = false;
@@ -27,6 +28,7 @@ public class SnakeController : MonoBehaviour
         kooli = GameObject.Find("Kooli");
         snakeAnimator = GetComponent<Animator>();
         defaultLayer = LayerMask.GetMask("Default");
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -53,11 +55,13 @@ public class SnakeController : MonoBehaviour
             {
                 snakeAnimator.SetBool("inAlertRange", true);
                 isAlert = true;
+                audioManager.Play("Snake Alert", true);
             }
             else if (!isAttacking)
             {
                 snakeAnimator.SetBool("inAttackRange", true);
                 isAttacking = true;
+                audioManager.Play("Snake Attack", true);
             }
         }
     }
