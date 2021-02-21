@@ -156,10 +156,14 @@ public class PlayerController : MonoBehaviour
             {
                 snakeController.health -= energy;
                 energy -= 10f;
+                audioManager.Play("Snake Hit", true);
 
                 if (snakeController.health <= 0f)
                 {
                     snakeController.isDead = true;
+                    audioManager.Stop("Snake Attack");
+                    audioManager.Stop("Snake Hit");
+                    audioManager.Play("Snake Death", true);
                     attackCollider.gameObject.GetComponent<Animator>().SetTrigger("isDead");
                 }
             }
