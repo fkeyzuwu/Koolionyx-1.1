@@ -1880,53 +1880,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
         type: 3}
-      propertyPath: audioClipsArray.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[5].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 22036d0b8d6b9a740bba6cdbf5a1d785, type: 3}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[4].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 3e1628878871d004dbe759bcdafa67ea, type: 3}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[6].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 015874ffe3999ff4aa3282e747c89f29, type: 3}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[5].volume
-      value: 0.476
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[4].volume
-      value: 0.152
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[7].name
-      value: Snake Death
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[7].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: a60e9b2b441a6734fb2dc7bae61182e4, type: 3}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[7].volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6292876390421943747, guid: e9fc0b14cf1121341b26c643779b7218,
-        type: 3}
-      propertyPath: audioClipsArray.Array.data[7].pitch
-      value: 1
+      propertyPath: audioClipsArray.Array.data[6].volume
+      value: 0.267
       objectReference: {fileID: 0}
     - target: {fileID: 6292876390421943751, guid: e9fc0b14cf1121341b26c643779b7218,
         type: 3}
