@@ -46,7 +46,7 @@ MonoBehaviour:
   audioClipsArray:
   - name: Foley
     clip: {fileID: 8300000, guid: b073f516a7f6ff240bfee3193bca8cf9, type: 3}
-    volume: 0.3
+    volume: 0.2
     pitch: 1
     loop: 1
   - name: Main Theme
@@ -56,6 +56,26 @@ MonoBehaviour:
     loop: 1
   - name: Button
     clip: {fileID: 8300000, guid: 9ea7dfd453fc1b749b7c330d231674c7, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+  - name: Eat
+    clip: {fileID: 8300000, guid: 77d2c4990f7f0b14f80df03f84735b1e, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+  - name: Snake Attack
+    clip: {fileID: 8300000, guid: 77d2c4990f7f0b14f80df03f84735b1e, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+  - name: Snake Alert
+    clip: {fileID: 8300000, guid: 77d2c4990f7f0b14f80df03f84735b1e, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+  - name: Snake Hit
+    clip: {fileID: 8300000, guid: 77d2c4990f7f0b14f80df03f84735b1e, type: 3}
     volume: 0.3
     pitch: 1
     loop: 0
