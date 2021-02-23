@@ -132,6 +132,11 @@ public class PlayerController : MonoBehaviour
         if (eucalyptusCollider != null && !eucalyptusCollider.GetComponent<Eucalyptus>().isEaten)
         {
             energy += 20f;
+            if(energy > 100)
+            {
+                energy = 100;
+            }
+
             audioManager.PlayOneShot("Eat");
             eucalyptusCollider.GetComponent<Animator>().SetTrigger("isEaten");
             eucalyptusCollider.GetComponent<Eucalyptus>().OnEucalyptusEaten();
@@ -147,30 +152,32 @@ public class PlayerController : MonoBehaviour
         else
             attackPos = new Vector2(transform.position.x, transform.position.y + direction);
 
-        Collider2D attackCollider = Physics2D.OverlapCircle(attackPos, 0.2f, enemiesLayer);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(attackPos, 0.2f, enemiesLayer);
 
-        if (attackCollider != null)
+        foreach(Collider2D collider in colliders)
         {
-            SnakeController snakeController = attackCollider.gameObject.GetComponent<SnakeController>();
-            if (!snakeController.isDead && energy > 0f)
+            if (!collider.isTrigger)
             {
-                snakeController.health -= energy;
-                energy -= 10f;
-
-                if (snakeController.health <= 0f)
+                SnakeController snakeController = collider.gameObject.GetComponent<SnakeController>();
+                if (!snakeController.isDead && energy > 0f)
                 {
-                    snakeController.isDead = true;
-                    audioManager.Play("Snake Death", true);
-                    attackCollider.gameObject.GetComponent<Animator>().SetTrigger("isDead");
-                }
+                    snakeController.health -= energy;
+                    energy -= 10f;
 
-                if (!snakeController.isDead)
-                {
-                    audioManager.Play("Snake Hit", true);
+                    if (snakeController.health <= 0f)
+                    {
+                        snakeController.isDead = true;
+                        audioManager.Play("Snake Death", true);
+                        collider.gameObject.GetComponent<Animator>().SetTrigger("isDead");
+                    }
+
+                    if (!snakeController.isDead)
+                    {
+                        audioManager.Play("Snake Hit", true);
+                    }
                 }
             }
-        }
-        
+        } 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
