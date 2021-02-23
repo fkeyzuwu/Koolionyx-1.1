@@ -100,7 +100,7 @@ public class AudioManager : MonoBehaviour
     public void Stop(string name)
     {
         AudioSource audioToStop = FindAudioSource(name);
-        //audioToStop?.Stop();
+
         if(audioToStop != null)
         {
             audioToStop.Stop();
