@@ -9,19 +9,20 @@ public class PlayerController : MonoBehaviour
     private LayerMask eucalyptusLayer;
     private LayerMask defaultLayer;
     private LayerMask enemiesLayer;
-    private bool isMoving;
     private Vector2 input;
+    private bool isMoving;
     private bool isHorizontal;
     private int direction;
     private Animator animator;
     private AudioManager audioManager;
     private float maxEnergy = 100f;
     private float minEnergy = 0f;
-
+    private float energy = 100f;
+    private float attackCooldownSeconds = 0.5f;
+    private float nextAttackTime;
 
     [HideInInspector]
     public float moveSpeed;
-    public float energy = 100f;
     public Image energyBar;
     public TextMeshProUGUI energyText;
 
@@ -86,8 +87,9 @@ public class PlayerController : MonoBehaviour
                 EatEucalyptus();
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && (nextAttackTime <= Time.time))
             {
+                nextAttackTime = Time.time + attackCooldownSeconds;
                 AttackPython();
             }
         }
@@ -180,7 +182,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-        } 
+        }
     }
 
     private void ChangeEnergy(float amount)
