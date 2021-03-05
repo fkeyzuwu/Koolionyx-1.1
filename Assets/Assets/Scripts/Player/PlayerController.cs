@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,11 +15,15 @@ public class PlayerController : MonoBehaviour
     private int direction;
     private Animator animator;
     private AudioManager audioManager;
+    private float maxEnergy = 100f;
+    private float minEnergy = 0f;
 
 
     [HideInInspector]
     public float moveSpeed;
-    public float energy = 100f; //TODO: UI
+    public float energy = 100f;
+    public Image energyBar;
+    public TextMeshProUGUI energyText;
 
     private void Awake()
     {
@@ -82,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                AttackPython(); //TODO: if python isnt dead, do a different animation - hit animation.
+                AttackPython();
             }
         }
 
@@ -131,11 +137,7 @@ public class PlayerController : MonoBehaviour
 
         if (eucalyptusCollider != null && !eucalyptusCollider.GetComponent<Eucalyptus>().isEaten)
         {
-            energy += 20f;
-            if(energy > 100)
-            {
-                energy = 100;
-            }
+            ChangeEnergy(20f);
 
             audioManager.PlayOneShot("Eat");
             eucalyptusCollider.GetComponent<Animator>().SetTrigger("isEaten");
@@ -159,10 +161,11 @@ public class PlayerController : MonoBehaviour
             if (!collider.isTrigger)
             {
                 SnakeController snakeController = collider.gameObject.GetComponent<SnakeController>();
-                if (!snakeController.isDead && energy > 0f)
+                if (!snakeController.isDead && energy > minEnergy)
                 {
                     snakeController.health -= energy;
-                    energy -= 10f;
+
+                    ChangeEnergy(-10f);
 
                     if (snakeController.health <= 0f)
                     {
@@ -178,6 +181,24 @@ public class PlayerController : MonoBehaviour
                 }
             }
         } 
+    }
+
+    private void ChangeEnergy(float amount)
+    {
+        energy += amount;
+
+        if (energy > maxEnergy)
+        {
+            energy = maxEnergy;
+        }
+
+        if(energy < minEnergy)
+        {
+            energy = minEnergy;
+        }
+
+        energyBar.fillAmount = energy / maxEnergy;
+        energyText.text = (int)energy + " / 100";
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
