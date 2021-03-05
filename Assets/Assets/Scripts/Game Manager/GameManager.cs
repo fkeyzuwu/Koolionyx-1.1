@@ -61,4 +61,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("You won the game!");
         //change to a game win scene
     }
+
+    public void OnEnergyChanged(float energy)
+    {
+        
+    }
 }
