@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public Image energyBar;
     public TextMeshProUGUI energyText;
+    public int stepCounter = 0;
+    public int loseEnergyStep = 5;
 
     private void Awake()
     {
@@ -109,6 +111,19 @@ public class PlayerController : MonoBehaviour
         transform.position = targetPos;
 
         isMoving = false;
+
+        stepCounter++;
+        CountSteps();
+    }
+
+    public void CountSteps()
+    {
+        if(stepCounter == loseEnergyStep)
+        {
+            ChangeEnergy(-5f);
+            
+            stepCounter = 0;
+        }
     }
 
     private bool IsWalkabale(Vector3 targetPos)
@@ -201,6 +216,8 @@ public class PlayerController : MonoBehaviour
 
         energyBar.fillAmount = energy / maxEnergy;
         energyText.text = (int)energy + " / 100";
+
+        GameManager.instance.OnEnergyChanged(energy);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
