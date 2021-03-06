@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,9 @@ public class GameManager : MonoBehaviour
     private Vector2 spawnPoint = new Vector2(-7.5f, 1.5f);
     public GameObject player;
     public GameObject home;
+
+    public Action<float> OnEnergyChanged;
+    public DrowsyScreenEffect drowsyScreenEffect;
 
     public TextMeshProUGUI scoreText;
 
@@ -28,6 +32,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateScore();
+
+        OnEnergyChanged += drowsyScreenEffect.DoEffect;
     }
 
     // Update is called once per frame
@@ -60,10 +66,5 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("You won the game!");
         //change to a game win scene
-    }
-
-    public void OnEnergyChanged(float energy)
-    {
-        
     }
 }
