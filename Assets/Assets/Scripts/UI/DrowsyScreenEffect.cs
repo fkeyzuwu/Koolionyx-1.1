@@ -6,23 +6,29 @@ using UnityEngine.UI;
 public class DrowsyScreenEffect : MonoBehaviour
 {
     private Image image;
+    private CanvasGroup alphaChanger;
     [SerializeField] private Color baseColor;
     [SerializeField] private Color drowsyColor;
 
+    private float startingDrowsyValue = 50;
+
     private bool isAnimating = false;
 
-    private float maxA = 0.6f; //TODO: Based on percentage of the energy, once its under 50 make the alpha bigger in order to show more of the image
+    private float maxA = 135;
 
     void Awake()
     {
         image = GetComponent<Image>();
-        baseColor = image.color;
+        alphaChanger = GetComponentInParent<CanvasGroup>();
+        image.color = baseColor;
     }
 
     public void DoEffect(float energy)
     {
-        if(energy <= 50)
+        if(energy <= startingDrowsyValue)
         {
+            alphaChanger.alpha = ((maxA / startingDrowsyValue) * (startingDrowsyValue - energy)) / 135;
+
             if (!isAnimating)
             {
                 isAnimating = true;
@@ -41,7 +47,6 @@ public class DrowsyScreenEffect : MonoBehaviour
         while (isAnimating)
         {
             image.color = Color.Lerp(baseColor, drowsyColor, Mathf.PingPong(Time.time, 1));
-            //change alpha based on how much energy the player has
             yield return new WaitForSeconds(0.01f);
         } 
     }
