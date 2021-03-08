@@ -39,6 +39,7 @@ public class DrowsyScreenEffect : MonoBehaviour
         {
             isAnimating = false;
             image.color = baseColor;
+            alphaChanger.alpha = 0;
         }
     }
 
