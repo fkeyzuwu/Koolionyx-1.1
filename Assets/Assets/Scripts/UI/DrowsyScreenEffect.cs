@@ -15,7 +15,6 @@ public class DrowsyScreenEffect : MonoBehaviour
     private float startingDrowsyValue = 50;
 
     private bool isAnimatingColor = false;
-    private bool isAnimatingAlpha = false;
 
     void Awake()
     {
@@ -26,7 +25,7 @@ public class DrowsyScreenEffect : MonoBehaviour
 
     public void DoEffect(float energy)
     {
-        if(energy <= startingDrowsyValue)
+        if(energy < startingDrowsyValue)
         {
             StartCoroutine(AnimateAlpha(energy));
 
@@ -55,22 +54,23 @@ public class DrowsyScreenEffect : MonoBehaviour
 
     IEnumerator AnimateAlpha(float energy)
     {
-        int operatorToDo;
         float alphaValue = ((maxA / startingDrowsyValue) * (startingDrowsyValue - energy)) / maxA;
 
         if (alphaChanger.alpha > alphaValue)
         {
-            operatorToDo = -1;
+            while (alphaChanger.alpha >= alphaValue)
+            {
+                alphaChanger.alpha -= (0.01f);
+                yield return new WaitForSeconds(0.01f);
+            }
         }
         else
         {
-            operatorToDo = 1;
-        }
-
-        while (alphaChanger.alpha != alphaValue)
-        {
-            alphaChanger.alpha = alphaChanger.alpha + (0.01f * operatorToDo);
-            yield return new WaitForSeconds(0.01f);
+            while (alphaChanger.alpha <= alphaValue)
+            {
+                alphaChanger.alpha += (0.01f);
+                yield return new WaitForSeconds(0.01f);
+            }
         }
 
         alphaChanger.alpha = alphaValue;
