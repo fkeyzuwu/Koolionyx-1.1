@@ -7,14 +7,15 @@ public class DrowsyScreenEffect : MonoBehaviour
 {
     private Image image;
     private CanvasGroup alphaChanger;
+    private float currentEnergy;
 
     [SerializeField] private Color baseColor;
     [SerializeField] private Color drowsyColor;
 
     private float maxA = 135;
-    private float startingDrowsyValue = 50;
+    private float startingDrowsyValue = 30;
 
-    private bool isAnimatingColor = false;
+    private bool isAnimating = false;
 
     void Awake()
     {
@@ -25,54 +26,58 @@ public class DrowsyScreenEffect : MonoBehaviour
 
     public void DoEffect(float energy)
     {
-        if(energy < startingDrowsyValue)
-        {
-            StartCoroutine(AnimateAlpha(energy));
+        currentEnergy = energy;
 
-            if (!isAnimatingColor)
+        if (energy < startingDrowsyValue)
+        {
+            if (!isAnimating)
             {
-                isAnimatingColor = true;
-                StartCoroutine(AnimateColor(energy));
+                isAnimating = true;
+                StartCoroutine(AnimateColor());
+                StartCoroutine(AnimateAlpha2());
             }     
         }
-        else
+        else if(isAnimating)
         {
-            isAnimatingColor = false;
+            isAnimating = false;
             image.color = baseColor;
             alphaChanger.alpha = 0;
         }
     }
 
-    IEnumerator AnimateColor(float energy)
+    IEnumerator AnimateColor()
     {
-        while (isAnimatingColor)
+        while (isAnimating)
         {
             image.color = Color.Lerp(baseColor, drowsyColor, Mathf.PingPong(Time.time, 1));
             yield return new WaitForSeconds(0.01f);
         } 
     }
 
-    IEnumerator AnimateAlpha(float energy)
+    IEnumerator AnimateAlpha2()
     {
-        float alphaValue = ((maxA / startingDrowsyValue) * (startingDrowsyValue - energy)) / maxA;
-
-        if (alphaChanger.alpha > alphaValue)
+        while (isAnimating)
         {
-            while (alphaChanger.alpha >= alphaValue)
-            {
-                alphaChanger.alpha -= (0.01f);
-                yield return new WaitForSeconds(0.01f);
-            }
-        }
-        else
-        {
-            while (alphaChanger.alpha <= alphaValue)
-            {
-                alphaChanger.alpha += (0.01f);
-                yield return new WaitForSeconds(0.01f);
-            }
-        }
+            float alphaValue = ((maxA / startingDrowsyValue) * (startingDrowsyValue - currentEnergy)) / maxA;
 
-        alphaChanger.alpha = alphaValue;
+            if (alphaChanger.alpha > alphaValue)
+            {
+                while (alphaChanger.alpha > alphaValue)
+                {
+                    alphaChanger.alpha -= (0.01f);
+                    yield return new WaitForSeconds(0.01f);
+                }
+            }
+            else if(alphaChanger.alpha < alphaValue)
+            {
+                while (alphaChanger.alpha < alphaValue)
+                {
+                    alphaChanger.alpha += (0.01f);
+                    yield return new WaitForSeconds(0.01f);
+                }
+            }
+            alphaChanger.alpha = alphaValue;
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 }
