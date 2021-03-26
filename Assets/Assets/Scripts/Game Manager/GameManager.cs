@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     public Action<float> OnEnergyChanged;
     public DrowsyScreenEffect drowsyScreenEffect;
+    public TimeManager timeManager;
 
     public TextMeshProUGUI scoreText;
 
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
         UpdateScore();
 
         OnEnergyChanged += drowsyScreenEffect.DoEffect;
+        OnEnergyChanged += timeManager.Slowdown;
     }
 
     // Update is called once per frame
